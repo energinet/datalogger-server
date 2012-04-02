@@ -1,0 +1,37 @@
+Byggeguide
+
+For at bygge den open-source datalogger kræves der:
+
+    En standard Linux 32bit maskine(Ubuntu 10.04 LTS i386 eller nyere)
+    En gcc compiler 
+    Programmet Git - Fast Version Control System
+    
+Hentning af kildekoden fra github
+
+Til at hente kildekoden fra github skal programmet Git bruges.
+
+user@host:~$ git clone git://github.com/energinet/datalogger-server.git
+user@host:~$ cd datalogger-server
+user@host:~/datalogger-server$ ls
+gsoap-patch  Makefile  README  rpserver
+
+user@host:~$ make all
+
+Under serverroot/var/www/cgi-bin/ ligger rpserver.cgi, den skal kopieres til /usr/lib/cgi-bin/ (hvis din maskine er en ubuntu)
+
+Så skulle du gerne kunne tilgå http://localhost/cgi-bin/rpserver.cgi i din browser.
+
+På computeren skal der oprettes en fil og en mappe til styrekommandoerne.
+user@host:~$ touch /tmp/data
+user@host:~$ chmod 777 /tmp/data
+user@host:~$ mkdir /tmp/cmd
+user@host:~$ chmod 777 /tmp/cmd
+
+På clientsiden startes rpclient med
+root@liab:~$ rpclient -n 1000 -H http://<SERVER-IP>/cgi-bin/rpserver.cgi -f -i 5
+
+For at styre relæerne fra computeren skal der echoes ned i en fil:
+user@host:~$ echo "pws_relay1 1" >> /tmp/cmd/2
+user@host:~$ echo "pws_relay1 0" >> /tmp/cmd/3
+
+Det første er kommando navn og det næste er værdi. Det tal der står efter /tmp/cmd/ er kommando id'et og det skal være unikt hver gang.
