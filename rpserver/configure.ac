@@ -76,9 +76,9 @@ AC_CHECK_HEADER(stdsoap2.h,, AC_MSG_ERROR(stdsoap2.h not found try using --with-
 
 AC_PATH_PROG(soapctool, soapcpp2)
 
-PKG_CHECK_MODULES(DEPS_XML, libxml-2.0)
-AC_SUBST(DEPS_XML_CFLAGS)
-AC_SUBST(DEPS_XML_LIBS)
+#PKG_CHECK_MODULES(DEPS_XML, libxml-2.0)
+#AC_SUBST(DEPS_XML_CFLAGS)
+#AC_SUBST(DEPS_XML_LIBS)
 
 #AC_CHECK_HEADER(libxmlpatch/xml_patch.h,, AC_MSG_ERROR(xml_patch.h not found try using --with-includes ))
 #AC_CHECK_LIB(xmlpatch, xml_patch_add,,AC_MSG_ERROR(xmlpatch not found try using --with-libraries))
